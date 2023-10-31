@@ -69,3 +69,22 @@ fetch("https://api.chucknorris.io/jokes/random")
     .then((data)=>{
         blagueDeChuck.innerHTML = data.value
     })
+
+const chuckBouton = document.querySelector('.chuckBouton')
+const chuck = document.querySelector('.chuck')
+
+async function voiciLaBlagueDeChuck()
+{
+    return await fetch("https://api.chucknorris.io/jokes/random")
+        .then(response=>response.json())
+        .then(data=>{
+            return data
+        })
+}
+
+chuckBouton.addEventListener("click",()=>{
+    voiciLaBlagueDeChuck().then(data=> {
+        let template = `<h3>${data.value}</h3>`
+        chuck.innerHTML += template;
+    })
+})
